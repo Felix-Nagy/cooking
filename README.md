@@ -1,4 +1,4 @@
-# fireblogs
+# cooking with felix
 
 ## Project setup
 ```

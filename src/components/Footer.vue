@@ -12,17 +12,17 @@
               <a href="#"><twitter class="svg-icon"/></a>
             </li>
             <li>
-              <a href="#"><instagram class="svg-icon"/></a>
+              <a href="https://www.instagram.com/cooking.with.felix/"><instagram class="svg-icon"/></a>
             </li>
             <li>
-              <a href="#"><linkedin class="svg-icon"/></a>
+              <a href="https://www.felix-nagy-019828192.de"><linkedin class="svg-icon"/></a>
             </li>
           </ul>
         </div>
         <div class="col-2">
           <ul>
             <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-            <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
+            <router-link class="link" :to="{ name: 'Recipes' }">Recipes</router-link>
             <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">Create Post</router-link>
             <router-link v-if="!user" class="link" :to="{ name: 'Login' }">Login In / Register</router-link>
           </ul>

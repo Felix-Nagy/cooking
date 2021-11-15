@@ -1,63 +1,53 @@
-
 <template>
   <div class="home">
-    <BlogPost  :post="welcomeScreen" />
+    <BlogPost v-if="!user" :post="welcomeScreen" />
     <BlogPost :post="post" v-for="(post, index) in blogPostsFeed" :key="index" />
     <div class="blog-card-wrap">
       <div class="container">
-        <h3>View More Recent Blogs</h3>
+        <h3>View More Recent Recipes</h3>
         <div class="blog-cards">
-          <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
+          <BlogCard :post="post" v-for="(post, index) in blogPostsCards" :key="index" />
         </div>
       </div>
     </div>
-    <div  class="updates">
+    <div v-if="!user" class="updates">
       <div class="container">
         <h2>never miss a post. Register for your free account today!</h2>
-        <router-link class="router-button" to="#"> Register for FireBlogs <Arrow class="arrow arrow-light" /> </router-link>
+        <router-link class="router-button" :to="{ name: 'Register' }"> Register for Cooking with Felix <Arrow class="arrow arrow-light" /> </router-link>
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
-import BlogPost from "../components/BlogPost"
-import BlogCard from "../components/BlogCard"
-import Arrow from "../assets/Icons/arrow-right-light.svg"
-
+import BlogPost from "../components/BlogPost";
+import BlogCard from "../components/BlogCard";
+import Arrow from "../assets/Icons/arrow-right-light.svg";
 export default {
   name: "Home",
-  components: {BlogPost, BlogCard, Arrow},
+  components: { BlogPost, BlogCard, Arrow },
   data() {
     return {
       welcomeScreen: {
         title: "Welcome!",
         blogPost:
-          "Weekly blog articles with all things programming including HTML, CSS, JavaScript and more. Register today to never miss a post!",
+          "Discover new Recpies you can cook yourself at home. Register today to never miss a post!",
         welcomeScreen: true,
-        photo: "coding",
+        photo: "collage",
       },
-      sampleBlogPost: [
-        {
-          title: "This is ",
-          blogHTML: "FIller",
-          blogCoverPhoto: "beautiful-stories"
-        },
-        {
-          title: "This is a",
-          blogHTML: "FIller",
-          blogCoverPhoto: "designed-for-everyone"
-        }
-      ],
-      sampleBlogCards: [
-        { blogTitle: "Blog Card 1", blogCoverPhoto: "stock-1", blogDate: "May 1, 2021"},
-        { blogTitle: "Blog Card 2", blogCoverPhoto: "stock-2", blogDate: "May 1, 2021"},
-        { blogTitle: "Blog Card 3", blogCoverPhoto: "stock-3", blogDate: "May 1, 2021"},
-        { blogTitle: "Blog Card 4", blogCoverPhoto: "stock-4", blogDate: "May 1, 2021"}
-      ]
-    }
-  }
+    };
+  },
+  computed: {
+    blogPostsFeed() {
+      return this.$store.getters.blogPostsFeed;
+    },
+    blogPostsCards() {
+      return this.$store.getters.blogPostsCards;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
 
